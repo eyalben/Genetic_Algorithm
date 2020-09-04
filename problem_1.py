@@ -8,9 +8,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 import geneticalgorithm as ga
 
+# CR: General Remarks:
+# 
+# 1. Create a main() function and use __name__ == '__main__' 
+# 2. Separate to functions
+# 3. Use sys.argv for app arguments and usage information (like number of generations)
+# 4. You should be more consistent with `Coding Conventions` - which is a convention (usually of a team)
+#    of how to style your code. But you should at least consistent with yourself (or PEP8, the official one: https://www.python.org/dev/peps/pep-0008/)
+#    Also worth checking out is the `Google Coding Style` (https://google.github.io/styleguide/pyguide.html)
+
 #defining a cost function:
 number_of_parameters = 12604
 
+# CR: Convention: Above you have ` = ` and here there are no spaces: `=`
 #defining mutation base rate:
 base_rate=0.005
 

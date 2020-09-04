@@ -8,16 +8,42 @@ Created on Sat Jan 11 20:32:03 2020
 import numpy as np
 import cv2
 
+# CR - General Remarks
+# 1. Great functions signature :) I understand what most of them are doing
+# 2. Many magic numbers, you should have them configured as a constant global values, for example:
+#    INVALID_FITNESS = -9999999
+# 3. File name is unclear
+# 4. You can put all of this code in a single class, for example:
+# 
+# class ProblemNameSolve:
+#
+#     def __init__(self, population_size, param1, param2, param3):
+#         self._output_file = output_file
+#
+#     def _mutate(self):
+#         pass
+#
+#     def _fitness_calculator(self, population):
+#         pass
+#
+#     def run(self, output_file, number_of_iterations = 100):
+#         pass
+
 
 ###Problem 2
+# CR: Parameters is not a good name
 def cost_function_image(parameters):
+    # CR: Hard-coded image file - should be configurable
     image = cv2.imread('64652.jpg',0).flatten()
 
+    # CR: `return np.sum(abs(parameters - image))`
     result = np.sum(abs(parameters - image))
 
     return result
 
+
 def fitness_calculator(population):
+    # CR: Function documentation should be a 'docstring', either a single string or a more informative (see Google Coding Convention)
     # calulates the result of a linear problem (for now...)
     fitness_values = np.zeros(population.shape[0])
     for i in range (population.shape[0]):
@@ -26,6 +52,7 @@ def fitness_calculator(population):
 
 ###Problem 1
 def cost_function_1(x,y):
+    # CR: Magic numbers - what is 20?
     result = ((y*np.sin(x+y))+(x*np.cos(y)))/(20+np.power(x,2))
     return result
 
@@ -47,6 +74,7 @@ def select_parents(population, fitness_values, number_of_parents):
         max_fitness_index = max_fitness_index[0][0]
         parents[parent_index, :] = population[max_fitness_index,:]
         #erasing the best current fitness to move to the next best fitness:
+        # CR: magic number
         fitness_values[max_fitness_index] = -999999999
     return parents
 
